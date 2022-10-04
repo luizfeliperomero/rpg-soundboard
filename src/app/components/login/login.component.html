@@ -1,8 +1,5 @@
-<div class="createUser">
-  <div *ngIf="success" class="alert-success">
-    Sign Up successfully completed! redirecting to Sign In...
-  </div>
-  <h3>Sign Up</h3>
+<div class="login">
+  <h3>Sign In</h3>
   <form [formGroup]="form">
     <div class="field">
       <label>Name</label>
@@ -13,5 +10,7 @@
       <input type="password" formControlName="password" />
     </div>
   </form>
-  <button (click)="save()" type="submit" class="btnSuccess">Confirm</button>
+  <button (click)="authenticate()" type="submit" class="btnSuccess">
+    Confirm
+  </button>
 </div>

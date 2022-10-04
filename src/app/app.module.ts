@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   PlaylistComponent,
@@ -12,7 +13,9 @@ import {
   WelcomeComponent,
   HomeComponent,
   CreateUserComponent,
+  LoginComponent,
 } from './components/';
+import { UserService } from './services';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,16 @@ import {
     WelcomeComponent,
     HomeComponent,
     CreateUserComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

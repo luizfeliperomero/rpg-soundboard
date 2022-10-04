@@ -5,15 +5,14 @@ import { User } from 'src/app/models';
 import { UserService } from 'src/app/services';
 
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
-export class CreateUserComponent implements OnInit {
+export class LoginComponent implements OnInit {
   @Output() sendSuccess = new EventEmitter<boolean>();
   user: User;
   form: FormGroup;
-  success: boolean = false;
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder
@@ -26,10 +25,10 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
-  save(): void {
-    this.userService.save(this.form.value).subscribe(() => {
-      this.success = true;
+  authenticate(): void {
+    this.userService.authenticate(this.form.value).subscribe((data) => {
       this.sendSuccess.emit(true);
+      localStorage.setItem('user', JSON.stringify(data));
     });
   }
 }

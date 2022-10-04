@@ -1,7 +1,14 @@
 <div class="welcome">
   <h1>Give Life To Your Journey</h1>
   <div class="buttons">
-    <button class="loginBtn">Sign In</button>
-    <button class="registerBtn">Sign Up</button>
+    <button (click)="setShowSignIn()" class="loginBtn">Sign In</button>
+    <button (click)="setShowSignUp()" class="registerBtn">Sign Up</button>
   </div>
 </div>
+<app-create-user
+  *ngIf="showSignUp"
+  (sendSuccess)="signUpStatus($event)"
+></app-create-user>
+<app-login *ngIf="showSignIn" (sendSuccess)="handleLogin($event)"></app-login>
+<div *ngIf="showSignUp" (click)="setShowSignUp()" class="overlay"></div>
+<div *ngIf="showSignIn" (click)="setShowSignIn()" class="overlay"></div>
