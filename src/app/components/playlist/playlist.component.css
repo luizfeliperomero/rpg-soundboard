@@ -1,0 +1,38 @@
+.inside {
+  width: 450px;
+  min-height: 450px;
+  border: 10px solid #1d1c1a;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 10px;
+}
+
+.name {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  background-color: #1d1c1a;
+  border-radius: 5px;
+}
+
+.sounds {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.addSound {
+  display: none;
+}
+
+.functions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnSuccess {
+  padding: 5px;
+}

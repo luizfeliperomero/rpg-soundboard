@@ -1,0 +1,16 @@
+<div class="app">
+  <div class="top">
+    <button class="btnSuccess" (click)="setShowAddPlaylistModal()">
+      <strong>New Playlist</strong>
+    </button>
+  </div>
+  <div class="playlists">
+    <app-playlist></app-playlist>
+  </div>
+</div>
+<app-add-playlist-modal *ngIf="showAddPlaylistModal"></app-add-playlist-modal>
+<div
+  *ngIf="showAddPlaylistModal"
+  (click)="setShowAddPlaylistModal()"
+  class="overlay"
+></div>

@@ -1,0 +1,13 @@
+<div class="playlistModal">
+  <form [formGroup]="form">
+    <div class="field">
+      <label>Name</label>
+      <input type="text" formControlName="name" />
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <input type="text" formControlName="description" />
+    </div>
+    <button type="submit" (click)="submit()">Confirm</button>
+  </form>
+</div>

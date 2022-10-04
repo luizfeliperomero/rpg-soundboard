@@ -1,0 +1,17 @@
+<div
+  [ngClass]="{
+    playerNotPlaying: audio.paused,
+    playerPlaying: !audio.paused
+  }"
+>
+  <div class="name">Nome</div>
+  <div class="buttons">
+    <fa-icon (click)="play()" [icon]="faPlay"></fa-icon>
+    <fa-icon (click)="pause()" [icon]="faPause"></fa-icon>
+    <fa-icon [icon]="faStop"></fa-icon>
+    <fa-icon [icon]="faLoop"></fa-icon>
+  </div>
+  <div class="slider">
+    <input type="range" />
+  </div>
+</div>
