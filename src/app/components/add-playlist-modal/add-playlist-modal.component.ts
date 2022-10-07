@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Playlist, User } from 'src/app/models';
+import { PlaylistService } from 'src/app/services';
 
 @Component({
   selector: 'app-add-playlist-modal',
@@ -8,9 +10,15 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddPlaylistModalComponent implements OnInit {
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  user: User;
+  playlist: Playlist;
+  constructor(
+    private playlistService: PlaylistService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
     this.form = this.formBuilder.group({
       name: [null],
       description: [null],
@@ -18,6 +26,9 @@ export class AddPlaylistModalComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.form.value);
+    this.playlist = this.form.value;
+    this.playlistService.save(this.playlist, this.user.id).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

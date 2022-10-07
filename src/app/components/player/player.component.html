@@ -4,7 +4,7 @@
     playerPlaying: !audio.paused
   }"
 >
-  <div class="name">Nome</div>
+  <div class="name">{{ sound.name }}</div>
   <div class="buttons">
     <fa-icon (click)="play()" [icon]="faPlay"></fa-icon>
     <fa-icon (click)="pause()" [icon]="faPause"></fa-icon>

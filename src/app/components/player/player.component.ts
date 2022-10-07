@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Sound } from 'src/app/models';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-player',

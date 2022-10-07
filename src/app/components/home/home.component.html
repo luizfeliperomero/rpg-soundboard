@@ -5,7 +5,10 @@
     </button>
   </div>
   <div class="playlists">
-    <app-playlist></app-playlist>
+    <app-playlist
+      *ngFor="let playlist of playlists"
+      [playlist]="playlist"
+    ></app-playlist>
   </div>
 </div>
 <app-add-playlist-modal *ngIf="showAddPlaylistModal"></app-add-playlist-modal>

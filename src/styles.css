@@ -4,6 +4,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 body {
   height: 100vh;
@@ -21,4 +22,15 @@ body {
 
 .btnSuccess:hover {
   background-color: #009000;
+}
+
+.alert-success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 10px;
+  background-color: #a3ebb1;
+  color: #116530;
+  font-size: 12px;
 }

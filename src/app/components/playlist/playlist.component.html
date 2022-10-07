@@ -11,9 +11,9 @@
     <button class="btnSuccess" (click)="uploadFile.click()">Add</button>
   </div>
   <div class="inside">
-    <div class="name">Playlist Name</div>
+    <div class="name">{{ playlist.name }}</div>
     <div class="sounds">
-      <app-player *ngIf="sound != null" [sound]="sound"></app-player>
+      <app-player *ngFor="let sound of sounds" [sound]="sound"></app-player>
     </div>
   </div>
 </div>

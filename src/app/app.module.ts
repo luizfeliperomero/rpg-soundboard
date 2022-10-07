@@ -15,7 +15,7 @@ import {
   CreateUserComponent,
   LoginComponent,
 } from './components/';
-import { UserService } from './services';
+import { UserService, PlaylistService, SoundService } from './services';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { UserService } from './services';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UserService],
+  providers: [UserService, PlaylistService, SoundService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

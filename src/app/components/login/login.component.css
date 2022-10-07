@@ -37,14 +37,3 @@ input {
   font-size: 16px;
   font-weight: bold;
 }
-
-.alert-success {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  padding: 10px;
-  background-color: #a3ebb1;
-  color: #116530;
-  font-size: 12px;
-}

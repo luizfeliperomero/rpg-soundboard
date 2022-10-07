@@ -1,4 +1,5 @@
 <div class="playlistModal">
+  <h2>New Playlist</h2>
   <form [formGroup]="form">
     <div class="field">
       <label>Name</label>
@@ -6,8 +7,8 @@
     </div>
     <div class="field">
       <label>Description</label>
-      <input type="text" formControlName="description" />
+      <textarea formControlName="description"></textarea>
     </div>
-    <button type="submit" (click)="submit()">Confirm</button>
+    <button class="btnSuccess" type="submit" (click)="submit()">Confirm</button>
   </form>
 </div>
