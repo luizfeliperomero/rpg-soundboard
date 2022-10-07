@@ -21,15 +21,22 @@ export class PlayerComponent implements OnInit {
   faLoop = faArrowRotateLeft;
   @Input() sound: Sound;
   audio = new Audio();
+  requested: boolean = false;
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.audio.src = this.sound.url;
-    this.audio.load();
+  ngOnInit(): void {}
+
+  sendSoundRequest(): void {
+    if (!this.requested) {
+      this.audio.src = this.sound.url;
+      this.audio.load();
+      this.requested = true;
+    }
   }
 
   play(): void {
+    this.sendSoundRequest();
     this.audio.play();
     this.listenForEnd();
   }
