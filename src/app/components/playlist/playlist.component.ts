@@ -26,7 +26,6 @@ export class PlaylistComponent implements OnInit {
       this.newSound = {
         id: null,
         name: file.name.split('.')[0],
-        fullName: file.name,
         url: `${environment.API}/api/v1/sound/getAudio/${file.name}`,
       };
     }

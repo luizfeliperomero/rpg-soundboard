@@ -49,3 +49,16 @@
 .buttons fa-icon:hover {
   color: #000;
 }
+
+.looping {
+  animation: 3s spin infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}

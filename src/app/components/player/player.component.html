@@ -4,14 +4,29 @@
     playerPlaying: !audio.paused
   }"
 >
-  <div class="name">{{ sound.name }}</div>
+  <div class="name">
+    {{ sound.name }}
+  </div>
   <div class="buttons">
     <fa-icon (click)="play()" [icon]="faPlay"></fa-icon>
     <fa-icon (click)="pause()" [icon]="faPause"></fa-icon>
-    <fa-icon [icon]="faStop"></fa-icon>
-    <fa-icon [icon]="faLoop"></fa-icon>
+    <fa-icon (click)="stop()" [icon]="faStop"></fa-icon>
+    <fa-icon
+      [ngClass]="{
+        looping: audio.loop
+      }"
+      (click)="setLoop()"
+      [icon]="faLoop"
+    ></fa-icon>
   </div>
   <div class="slider">
-    <input type="range" />
+    <input
+      type="range"
+      min="0"
+      max="1"
+      step="0.01"
+      value="0.5"
+      (input)="setVolume($event)"
+    />
   </div>
 </div>
