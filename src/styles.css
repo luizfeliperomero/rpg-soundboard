@@ -34,3 +34,14 @@ body {
   color: #116530;
   font-size: 12px;
 }
+
+.alert-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 10px;
+  background-color: #ffcbd1;
+  color: #8b0000;
+  font-size: 12px;
+}

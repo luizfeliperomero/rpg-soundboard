@@ -1,5 +1,6 @@
 <div class="login">
   <h3>Sign In</h3>
+  <div *ngIf="unauthorized" class="alert-error">Wrong credentials</div>
   <form [formGroup]="form">
     <div class="field">
       <label>Name</label>

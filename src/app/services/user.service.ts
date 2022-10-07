@@ -16,7 +16,7 @@ export class UserService {
     return this.http.post<User>(`${this.API}/save`, user);
   }
 
-  authenticate(user: User): Observable<User> {
-    return this.http.post<User>(`${this.API}/authenticate`, user);
+  authenticate(user: User): Observable<any> {
+    return this.http.post<any>(`${this.API}/authenticate`, user);
   }
 }

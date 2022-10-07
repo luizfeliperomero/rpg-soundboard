@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   @Output() sendSuccess = new EventEmitter<boolean>();
   user: User;
   form: FormGroup;
+  unauthorized: boolean = false;
+
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder
@@ -26,9 +28,19 @@ export class LoginComponent implements OnInit {
   }
 
   authenticate(): void {
-    this.userService.authenticate(this.form.value).subscribe((data) => {
-      this.sendSuccess.emit(true);
-      localStorage.setItem('user', JSON.stringify(data));
-    });
+    this.userService.authenticate(this.form.value).subscribe(
+      (data) => {
+        console.log(data.status);
+        if (data.status === 200) {
+          this.sendSuccess.emit(true);
+          localStorage.setItem('user', JSON.stringify(data));
+        }
+      },
+      (err) => {
+        if (err.status === 401 || err.status === 404) {
+          this.unauthorized = true;
+        }
+      }
+    );
   }
 }
