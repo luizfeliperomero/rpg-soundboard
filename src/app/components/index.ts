@@ -5,3 +5,5 @@ export * from './welcome';
 export * from './home';
 export * from './create-user';
 export * from './login';
+export * from './staging-area';
+export * from './sound-sender';

@@ -17,7 +17,17 @@
     </div>
     <div class="name">{{ playlist.name }}</div>
     <div class="sounds">
-      <app-player *ngFor="let sound of sounds" [sound]="sound"></app-player>
+      <app-sound-sender
+        (emitter)="soundStarted($event)"
+        *ngFor="let sound of sounds"
+        [sound]="sound"
+      ></app-sound-sender>
+
+      <!--<app-player
+        (started)="soundStarted($event)"
+        *ngFor="let sound of sounds"
+        [sound]="sound"
+		></app-player>-->
     </div>
   </div>
 </div>

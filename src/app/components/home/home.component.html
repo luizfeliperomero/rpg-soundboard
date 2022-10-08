@@ -4,8 +4,10 @@
       <strong>New Playlist</strong>
     </button>
   </div>
+  <app-staging-area [sound]="sound"></app-staging-area>
   <div class="playlists">
     <app-playlist
+      (started)="soundStarted($event)"
       *ngFor="let playlist of playlists"
       [playlist]="playlist"
     ></app-playlist>

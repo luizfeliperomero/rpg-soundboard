@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 import { Playlist, Sound } from 'src/app/models';
@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PlaylistComponent implements OnInit {
   @Input() playlist: Playlist;
+  @Output() started: EventEmitter<Sound> = new EventEmitter();
   newSound: Sound;
   sounds: Sound[];
   faPlusCircle = faCirclePlus;
@@ -56,5 +57,9 @@ export class PlaylistComponent implements OnInit {
       .subscribe((data) => {
         this.sounds = data;
       });
+  }
+
+  soundStarted(event) {
+    this.started.emit(event);
   }
 }

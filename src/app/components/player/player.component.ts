@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   faPlay,
   faPause,
@@ -7,7 +7,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Sound } from 'src/app/models';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-player',
@@ -20,6 +19,7 @@ export class PlayerComponent implements OnInit {
   faStop = faStop;
   faLoop = faArrowRotateLeft;
   @Input() sound: Sound;
+  @Output() started: EventEmitter<Sound> = new EventEmitter();
   audio = new Audio();
   requested: boolean = false;
 
@@ -36,6 +36,7 @@ export class PlayerComponent implements OnInit {
   }
 
   play(): void {
+    this.started.emit(this.sound);
     this.sendSoundRequest();
     this.audio.play();
     this.listenForEnd();

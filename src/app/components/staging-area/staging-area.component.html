@@ -1,0 +1,3 @@
+<div *ngIf="sounds.length > 0" class="staging-area">
+  <app-player *ngFor="let sound of sounds" [sound]="sound"></app-player>
+</div>

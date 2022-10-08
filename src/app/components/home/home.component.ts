@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Playlist } from 'src/app/models';
+import { Playlist, Sound } from 'src/app/models';
 import { PlaylistService } from 'src/app/services';
 
 @Component({
@@ -8,14 +8,15 @@ import { PlaylistService } from 'src/app/services';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  showAddPlaylistModal: boolean = false;
+  playlists: Playlist[];
+  sound: Sound;
+
   constructor(private playlistService: PlaylistService) {}
 
   ngOnInit(): void {
     this.getUserPlaylists();
   }
-
-  showAddPlaylistModal: boolean = false;
-  playlists: Playlist[];
 
   setShowAddPlaylistModal(): void {
     this.showAddPlaylistModal = !this.showAddPlaylistModal;
@@ -27,5 +28,9 @@ export class HomeComponent implements OnInit {
       .subscribe((data) => {
         this.playlists = data;
       });
+  }
+
+  soundStarted(event) {
+    this.sound = event;
   }
 }

@@ -14,8 +14,10 @@ import {
   HomeComponent,
   CreateUserComponent,
   LoginComponent,
+  StagingAreaComponent,
 } from './components/';
 import { UserService, PlaylistService, SoundService } from './services';
+import { SoundSenderComponent } from './components/sound-sender/sound-sender.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { UserService, PlaylistService, SoundService } from './services';
     HomeComponent,
     CreateUserComponent,
     LoginComponent,
+    StagingAreaComponent,
+    SoundSenderComponent,
   ],
   imports: [
     BrowserModule,
