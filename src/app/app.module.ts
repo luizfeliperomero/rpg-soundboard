@@ -15,9 +15,14 @@ import {
   CreateUserComponent,
   LoginComponent,
   StagingAreaComponent,
+  SoundSenderComponent,
 } from './components/';
-import { UserService, PlaylistService, SoundService } from './services';
-import { SoundSenderComponent } from './components/sound-sender/sound-sender.component';
+import {
+  UserService,
+  PlaylistService,
+  SoundService,
+  PlayerService,
+} from './services';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,7 @@ import { SoundSenderComponent } from './components/sound-sender/sound-sender.com
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UserService, PlaylistService, SoundService],
+  providers: [UserService, PlaylistService, SoundService, PlayerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

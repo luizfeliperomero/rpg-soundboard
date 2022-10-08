@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnChanges,
@@ -14,15 +15,17 @@ import {
   faStop,
   faArrowRotateLeft,
 } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
 
 import { Sound } from 'src/app/models';
+import { PlayerService } from 'src/app/services';
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css'],
 })
-export class PlayerComponent implements OnInit, OnDestroy {
+export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
   faPlay = faPlay;
   faPause = faPause;
   faStop = faStop;
@@ -30,13 +33,31 @@ export class PlayerComponent implements OnInit, OnDestroy {
   @Input() sound: Sound;
   @Output() started: EventEmitter<Sound> = new EventEmitter();
   audio = new Audio();
+  staged: boolean = true;
   requested: boolean = false;
 
-  constructor() {}
+  constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.playerService.sendStagedStatus({
+      staged: this.staged,
+      soundId: this.sound.id,
+    });
+  }
+
+  ngDoCheck(): void {
+    this.playerService.sendAudio({
+      audio: this.audio,
+      soundId: this.sound.id,
+    });
+  }
 
   ngOnDestroy(): void {
+    this.staged = false;
+    this.playerService.sendStagedStatus({
+      staged: this.staged,
+      soundId: this.sound.id,
+    });
     this.pause();
   }
 
