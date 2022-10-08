@@ -1,6 +1,5 @@
 import {
   Component,
-  DoCheck,
   Input,
   OnChanges,
   OnInit,
@@ -19,6 +18,7 @@ import { PlayerComponent } from '../player';
 export class StagingAreaComponent implements OnInit, OnChanges {
   @Input() sendedSound: SendedSound;
   @Input() player: PlayerComponent;
+
   faTrashCan = faTrashCan;
 
   sounds: Sound[] = [];

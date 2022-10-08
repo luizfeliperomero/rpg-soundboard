@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   faPlay,
   faPause,
@@ -13,7 +22,7 @@ import { Sound } from 'src/app/models';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css'],
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnDestroy {
   faPlay = faPlay;
   faPause = faPause;
   faStop = faStop;
@@ -26,6 +35,10 @@ export class PlayerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.pause();
+  }
 
   sendSoundRequest(): void {
     if (!this.requested) {
