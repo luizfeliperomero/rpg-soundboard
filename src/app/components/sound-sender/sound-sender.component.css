@@ -4,17 +4,20 @@
   align-items: center;
   padding: 5px;
   margin: 0;
-  min-width: 140px;
+  width: 140px;
   gap: 10px;
   background-color: #0003;
+  background: none;
   border-radius: 5px;
 }
 
 button {
+  display: flex;
+  justify-content: center;
   border: 2px solid #fff;
   border-radius: 10px;
   color: #fff;
-  min-width: 40%;
+  width: 100px;
   padding: 10px;
   background: transparent;
   cursor: pointer;

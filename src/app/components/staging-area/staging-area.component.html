@@ -1,3 +1,8 @@
 <div *ngIf="sounds.length > 0" class="staging-area">
-  <app-player *ngFor="let sound of sounds" [sound]="sound"></app-player>
+  <div class="functions">
+    <fa-icon (click)="clear()" [icon]="faTrashCan"></fa-icon>
+  </div>
+  <div class="players">
+    <app-player *ngFor="let sound of sounds" [sound]="sound"></app-player>
+  </div>
 </div>

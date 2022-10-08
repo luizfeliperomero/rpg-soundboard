@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Playlist, Sound } from 'src/app/models';
+import { Playlist, SendedSound, Sound } from 'src/app/models';
 import { PlaylistService } from 'src/app/services';
 
 @Component({
@@ -10,7 +10,7 @@ import { PlaylistService } from 'src/app/services';
 export class HomeComponent implements OnInit {
   showAddPlaylistModal: boolean = false;
   playlists: Playlist[];
-  sound: Sound;
+  sendedSound: SendedSound;
 
   constructor(private playlistService: PlaylistService) {}
 
@@ -31,6 +31,6 @@ export class HomeComponent implements OnInit {
   }
 
   soundStarted(event) {
-    this.sound = event;
+    this.sendedSound = event;
   }
 }

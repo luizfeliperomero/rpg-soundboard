@@ -32,7 +32,6 @@ export class PlaylistComponent implements OnInit {
         url: `${environment.API}/api/v1/sound/getAudio/${file.name}`,
       };
     }
-    console.log(this.newSound);
     this.uploadFile(file);
     this.saveSound(this.newSound);
   }

@@ -1,7 +1,7 @@
 .staging-area {
   display: flex;
+  flex-direction: column;
   min-height: 150px;
-  justify-content: center;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
@@ -11,4 +11,20 @@
   border: 10px solid #1d1c1a;
   background-color: #0004;
   border-radius: 20px;
+}
+
+fa-icon {
+  cursor: pointer;
+  color: #fff;
+}
+
+fa-icon:hover {
+  color: #f00;
+}
+
+.players {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
 }
