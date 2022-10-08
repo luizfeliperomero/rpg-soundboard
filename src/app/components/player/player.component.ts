@@ -59,6 +59,9 @@ export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
       soundId: this.sound.id,
     });
     this.pause();
+    if (this.audio.loop) {
+      this.setLoop();
+    }
   }
 
   sendSoundRequest(): void {

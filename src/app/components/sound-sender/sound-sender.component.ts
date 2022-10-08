@@ -34,8 +34,9 @@ export class SoundSenderComponent implements OnInit {
   getUpdatedAudio(): void {
     this.playerService.getAudio().subscribe((data) => {
       if (data.soundId === this.sound.id) {
-        this.audio = data.audio;
-        this.cd.detectChanges();
+        setTimeout(() => {
+          this.audio = data.audio;
+        }, 0);
       }
     });
   }

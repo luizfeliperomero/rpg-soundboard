@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnChanges,
@@ -24,7 +25,7 @@ export class StagingAreaComponent implements OnInit, OnChanges {
 
   sounds: Sound[] = [];
 
-  constructor() {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {}
 
