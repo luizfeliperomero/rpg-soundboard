@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 import { Playlist, Sound } from 'src/app/models';
 import { SoundService } from 'src/app/services';
@@ -13,6 +14,7 @@ export class PlaylistComponent implements OnInit {
   @Input() playlist: Playlist;
   newSound: Sound;
   sounds: Sound[];
+  faPlusCircle = faCirclePlus;
 
   constructor(private soundService: SoundService) {}
 

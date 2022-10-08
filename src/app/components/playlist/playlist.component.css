@@ -31,8 +31,7 @@
 
 .functions {
   display: flex;
-  justify-content: flex-end;
-  position: absolute;
+  justify-content: center;
 }
 
 .btnSuccess {

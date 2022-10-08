@@ -7,10 +7,14 @@
     #uploadFile
   />
 
-  <div class="functions">
-    <button class="btnSuccess" (click)="uploadFile.click()">Add</button>
-  </div>
   <div class="inside">
+    <div class="functions">
+      <fa-icon
+        style="color: #0f0; cursor: pointer"
+        [icon]="faPlusCircle"
+        (click)="uploadFile.click()"
+      ></fa-icon>
+    </div>
     <div class="name">{{ playlist.name }}</div>
     <div class="sounds">
       <app-player *ngFor="let sound of sounds" [sound]="sound"></app-player>
