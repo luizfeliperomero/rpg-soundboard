@@ -9,9 +9,13 @@
   min-width: 300px;
   min-height: 400px;
   position: fixed;
+  opacity: 0;
+  animation-name: pop;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
   z-index: 11;
 }
 

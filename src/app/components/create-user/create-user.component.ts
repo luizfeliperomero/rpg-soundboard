@@ -14,6 +14,8 @@ export class CreateUserComponent implements OnInit {
   user: User;
   form: FormGroup;
   success: boolean = false;
+  unauthorized: boolean = false;
+
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder
@@ -27,9 +29,16 @@ export class CreateUserComponent implements OnInit {
   }
 
   save(): void {
-    this.userService.save(this.form.value).subscribe(() => {
-      this.success = true;
-      this.sendSuccess.emit(true);
-    });
+    this.userService.save(this.form.value).subscribe(
+      () => {
+        this.success = true;
+        this.sendSuccess.emit(true);
+      },
+      (err) => {
+        if (err.status === 401) {
+          this.unauthorized = true;
+        }
+      }
+    );
   }
 }

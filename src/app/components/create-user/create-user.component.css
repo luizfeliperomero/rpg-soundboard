@@ -11,7 +11,11 @@
   position: fixed;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation-name: pop;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
   z-index: 11;
 }
 

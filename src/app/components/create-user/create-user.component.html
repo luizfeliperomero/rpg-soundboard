@@ -2,6 +2,7 @@
   <div *ngIf="success" class="alert-success">
     Sign Up successfully completed! redirecting to Sign In...
   </div>
+  <div *ngIf="unauthorized" class="alert-error">Name already taken</div>
   <h3>Sign Up</h3>
   <form [formGroup]="form">
     <div class="field">
