@@ -17,11 +17,11 @@
 
 fa-icon {
   cursor: pointer;
-  color: #fff;
+  color: #f00;
 }
 
 fa-icon:hover {
-  color: #f00;
+  color: #b00;
 }
 
 .players {
