@@ -11,6 +11,8 @@
   border: 10px solid #1d1c1a;
   background-color: #0004;
   border-radius: 20px;
+  animation-name: slide;
+  animation-duration: 0.8s;
 }
 
 fa-icon {
@@ -27,4 +29,13 @@ fa-icon:hover {
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
+}
+
+@keyframes slide {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }

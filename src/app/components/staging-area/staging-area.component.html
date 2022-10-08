@@ -3,6 +3,10 @@
     <fa-icon (click)="clear()" [icon]="faTrashCan"></fa-icon>
   </div>
   <div class="players">
-    <app-player *ngFor="let sound of sounds" [sound]="sound"></app-player>
+    <app-player
+      (leave)="removeSound($event)"
+      *ngFor="let sound of sounds"
+      [sound]="sound"
+    ></app-player>
   </div>
 </div>

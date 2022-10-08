@@ -3,19 +3,17 @@ import {
   DoCheck,
   EventEmitter,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import {
   faPlay,
   faPause,
   faStop,
   faArrowRotateLeft,
+  faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
-import { Subject } from 'rxjs';
 
 import { Sound } from 'src/app/models';
 import { PlayerService } from 'src/app/services';
@@ -30,8 +28,10 @@ export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
   faPause = faPause;
   faStop = faStop;
   faLoop = faArrowRotateLeft;
+  faTrashCan = faTrashCan;
   @Input() sound: Sound;
   @Output() started: EventEmitter<Sound> = new EventEmitter();
+  @Output() leave: EventEmitter<Sound> = new EventEmitter();
   audio = new Audio();
   staged: boolean = true;
   requested: boolean = false;
@@ -95,5 +95,9 @@ export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
 
   setVolume(event) {
     this.audio.volume = event.target.value;
+  }
+
+  getOut() {
+    this.leave.emit(this.sound);
   }
 }

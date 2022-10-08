@@ -54,6 +54,21 @@
   animation: 3s spin infinite linear;
 }
 
+.header {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+fa-icon {
+  cursor: pointer;
+  color: #fff;
+}
+
+fa-icon:hover {
+  color: #f00;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
