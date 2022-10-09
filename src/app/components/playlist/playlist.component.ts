@@ -92,10 +92,10 @@ export class PlaylistComponent implements OnInit, OnDestroy {
         },
         () => {
           this.uploadingMessage = 'Upload completed!';
-          this.saveSound(this.newSound);
           setTimeout(() => {
             this.setUploading();
           }, 2000);
+          this.saveSound(this.newSound);
         }
       )
     );
