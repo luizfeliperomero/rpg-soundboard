@@ -6,7 +6,11 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { faCirclePlus, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCirclePlus,
+  faSpinner,
+  faCheck,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { Playlist, Sound } from 'src/app/models';
 import { SoundService } from 'src/app/services';
@@ -24,6 +28,7 @@ export class PlaylistComponent implements OnInit {
   sounds: Sound[];
   faPlusCircle = faCirclePlus;
   faSpinner = faSpinner;
+  faCheck = faCheck;
   uploading: boolean = false;
   uploadingMessage: String = '';
 
@@ -76,7 +81,9 @@ export class PlaylistComponent implements OnInit {
       },
       () => {
         this.uploadingMessage = 'Upload completed!';
-        this.setUploading();
+        setTimeout(() => {
+          this.setUploading();
+        }, 2000);
       }
     );
   }

@@ -31,6 +31,11 @@
       class="spinner"
       [icon]="faSpinner"
     ></fa-icon>
+    <fa-icon
+      style="color: #0f0"
+      *ngIf="uploadingMessage === 'Upload completed!'"
+      [icon]="faCheck"
+    ></fa-icon>
   </div>
   <div class="overlay" *ngIf="uploading" (click)="setUploading()"></div>
 </div>
