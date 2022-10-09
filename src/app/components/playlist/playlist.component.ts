@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -11,6 +12,7 @@ import {
   faSpinner,
   faCheck,
 } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 
 import { Playlist, Sound } from 'src/app/models';
 import { SoundService } from 'src/app/services';
@@ -21,7 +23,8 @@ import { environment } from 'src/environments/environment';
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.css'],
 })
-export class PlaylistComponent implements OnInit {
+export class PlaylistComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
   @Input() playlist: Playlist;
   @Output() started: EventEmitter<Sound> = new EventEmitter();
   newSound: Sound;
@@ -41,6 +44,12 @@ export class PlaylistComponent implements OnInit {
     this.getPlaylistSounds();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((s) => {
+      s.unsubscribe();
+    });
+  }
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -54,11 +63,13 @@ export class PlaylistComponent implements OnInit {
   }
 
   saveSound(sound: Sound): void {
-    this.soundService
-      .save(Number(this.playlist.id), sound)
-      .subscribe((data) => {
-        this.getPlaylistSounds();
-      });
+    this.subscriptions.push(
+      this.soundService
+        .save(Number(this.playlist.id), sound)
+        .subscribe((data) => {
+          this.getPlaylistSounds();
+        })
+    );
   }
 
   setUploading(): void {
@@ -68,32 +79,36 @@ export class PlaylistComponent implements OnInit {
   uploadFile(file): void {
     this.setUploading();
     this.uploadingMessage = 'Uploading';
-    this.soundService.uploadFile(file).subscribe(
-      (success) => {
-        this.uploadingMessage = "Uploading, Please don't refresh the page";
-      },
-      (err) => {
-        this.uploadingMessage = 'Sorry, something went wrong';
-        setTimeout(() => {
-          this.setUploading();
-        }, 5000);
-      },
-      () => {
-        this.uploadingMessage = 'Upload completed!';
-        this.saveSound(this.newSound);
-        setTimeout(() => {
-          this.setUploading();
-        }, 2000);
-      }
+    this.subscriptions.push(
+      this.soundService.uploadFile(file).subscribe(
+        (success) => {
+          this.uploadingMessage = "Uploading, Please don't refresh the page";
+        },
+        (err) => {
+          this.uploadingMessage = 'Sorry, something went wrong';
+          setTimeout(() => {
+            this.setUploading();
+          }, 5000);
+        },
+        () => {
+          this.uploadingMessage = 'Upload completed!';
+          this.saveSound(this.newSound);
+          setTimeout(() => {
+            this.setUploading();
+          }, 2000);
+        }
+      )
     );
   }
 
   getPlaylistSounds(): void {
-    this.soundService
-      .getPlaylistSounds(Number(this.playlist.id))
-      .subscribe((data) => {
-        this.sounds = data;
-      });
+    this.subscriptions.push(
+      this.soundService
+        .getPlaylistSounds(Number(this.playlist.id))
+        .subscribe((data) => {
+          this.sounds = data;
+        })
+    );
   }
 
   soundStarted(event) {
