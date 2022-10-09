@@ -37,3 +37,43 @@
 .btnSuccess {
   padding: 5px;
 }
+
+.spinner {
+  animation: spin 2s linear infinite;
+}
+
+.uploadingModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border-radius: 8px;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  min-width: 250px;
+  min-height: 100px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 11;
+}
+.overlay {
+  background: #000;
+  height: 100vh;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

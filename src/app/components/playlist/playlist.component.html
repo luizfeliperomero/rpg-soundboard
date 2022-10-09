@@ -22,12 +22,15 @@
         *ngFor="let sound of sounds"
         [sound]="sound"
       ></app-sound-sender>
-
-      <!--<app-player
-        (started)="soundStarted($event)"
-        *ngFor="let sound of sounds"
-        [sound]="sound"
-		></app-player>-->
     </div>
   </div>
+  <div class="uploadingModal" *ngIf="uploading">
+    <div class="message">{{ uploadingMessage }}</div>
+    <fa-icon
+      *ngIf="uploadingMessage === 'Uploading'"
+      class="spinner"
+      [icon]="faSpinner"
+    ></fa-icon>
+  </div>
+  <div class="overlay" *ngIf="uploading" (click)="setUploading()"></div>
 </div>

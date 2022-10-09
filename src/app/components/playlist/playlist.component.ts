@@ -1,5 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { faCirclePlus, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { Playlist, Sound } from 'src/app/models';
 import { SoundService } from 'src/app/services';
@@ -16,8 +23,14 @@ export class PlaylistComponent implements OnInit {
   newSound: Sound;
   sounds: Sound[];
   faPlusCircle = faCirclePlus;
+  faSpinner = faSpinner;
+  uploading: boolean = false;
+  uploadingMessage: String = '';
 
-  constructor(private soundService: SoundService) {}
+  constructor(
+    private soundService: SoundService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getPlaylistSounds();
@@ -40,14 +53,32 @@ export class PlaylistComponent implements OnInit {
     this.soundService
       .save(Number(this.playlist.id), sound)
       .subscribe((data) => {
-        console.log(data);
+        this.cd.detectChanges();
       });
   }
 
+  setUploading(): void {
+    this.uploading = !this.uploading;
+  }
+
   uploadFile(file): void {
-    this.soundService.uploadFile(file).subscribe((data) => {
-      console.log(data);
-    });
+    this.setUploading();
+    this.uploadingMessage = 'Uploading';
+    this.soundService.uploadFile(file).subscribe(
+      (success) => {
+        this.uploadingMessage = "Uploading, Please don't refresh the page";
+      },
+      (err) => {
+        this.uploadingMessage = 'Sorry, something went wrong :(';
+        setTimeout(() => {
+          this.setUploading();
+        }, 3000);
+      },
+      () => {
+        this.uploadingMessage = 'Upload completed!';
+        this.setUploading();
+      }
+    );
   }
 
   getPlaylistSounds(): void {
