@@ -51,14 +51,13 @@ export class PlaylistComponent implements OnInit {
       };
     }
     this.uploadFile(file);
-    this.saveSound(this.newSound);
   }
 
   saveSound(sound: Sound): void {
     this.soundService
       .save(Number(this.playlist.id), sound)
       .subscribe((data) => {
-        this.cd.detectChanges();
+        this.getPlaylistSounds();
       });
   }
 
@@ -74,13 +73,14 @@ export class PlaylistComponent implements OnInit {
         this.uploadingMessage = "Uploading, Please don't refresh the page";
       },
       (err) => {
-        this.uploadingMessage = 'Sorry, something went wrong :(';
+        this.uploadingMessage = 'Sorry, something went wrong';
         setTimeout(() => {
           this.setUploading();
-        }, 3000);
+        }, 5000);
       },
       () => {
         this.uploadingMessage = 'Upload completed!';
+        this.saveSound(this.newSound);
         setTimeout(() => {
           this.setUploading();
         }, 2000);
