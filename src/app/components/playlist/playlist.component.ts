@@ -62,16 +62,6 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     this.uploadFile(file);
   }
 
-  saveSound(sound: Sound): void {
-    this.subscriptions.push(
-      this.soundService
-        .save(Number(this.playlist.id), sound)
-        .subscribe((data) => {
-          this.getPlaylistSounds();
-        })
-    );
-  }
-
   setUploading(): void {
     this.uploading = !this.uploading;
   }
@@ -80,7 +70,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     this.setUploading();
     this.uploadingMessage = 'Uploading';
     this.subscriptions.push(
-      this.soundService.uploadFile(file).subscribe(
+      this.soundService.uploadFile(file, this.playlist.id).subscribe(
         (success) => {
           this.uploadingMessage = "Uploading, Please don't refresh the page";
         },
@@ -93,9 +83,9 @@ export class PlaylistComponent implements OnInit, OnDestroy {
         () => {
           this.uploadingMessage = 'Upload completed!';
           setTimeout(() => {
+            this.getPlaylistSounds();
             this.setUploading();
           }, 2000);
-          this.saveSound(this.newSound);
         }
       )
     );

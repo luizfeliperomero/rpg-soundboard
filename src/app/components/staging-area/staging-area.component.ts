@@ -43,7 +43,7 @@ export class StagingAreaComponent implements OnInit, OnChanges {
   removeSound(event: Sound): void {
     this.sounds.forEach((el, i) => {
       if (el.id === event.id) {
-        this.sounds.splice(i);
+        this.sounds.splice(i, 1);
       }
     });
   }
