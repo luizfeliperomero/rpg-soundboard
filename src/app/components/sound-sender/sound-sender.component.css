@@ -51,3 +51,13 @@ button:hover {
   background-color: #fff;
   color: #000;
 }
+
+.staged:hover {
+  background-color: #40e0d0;
+  color: #000;
+}
+
+.playing:hover {
+  background-color: #0f0;
+  color: #000;
+}
