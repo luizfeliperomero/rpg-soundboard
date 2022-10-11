@@ -18,7 +18,6 @@ import { PlayerComponent } from '../player';
   selector: 'app-staging-area',
   templateUrl: './staging-area.component.html',
   styleUrls: ['./staging-area.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
   @Input() sendedSound: SendedSound;
