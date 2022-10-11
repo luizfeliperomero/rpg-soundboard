@@ -25,7 +25,7 @@ import { PlayerService } from 'src/app/services';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css'],
 })
-export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
+export class PlayerComponent implements OnInit, OnDestroy {
   faPlay = faPlay;
   faPause = faPause;
   faStop = faStop;
@@ -50,7 +50,7 @@ export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
     });
   }
 
-  ngDoCheck(): void {
+  sendAudio(): void {
     this.playerService.sendAudio({
       audio: this.audio,
       soundId: this.sound.id,
@@ -82,19 +82,23 @@ export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
     this.sendSoundRequest();
     this.audio.play();
     this.listenForEnd();
+    this.sendAudio();
   }
 
   listenForEnd(): void {
     this.audio.onended = function () {};
+    this.sendAudio();
   }
 
   pause(): void {
     this.audio.pause();
+    this.sendAudio();
   }
 
   stop(): void {
     this.audio.pause();
     this.audio.currentTime = 0;
+    this.sendAudio();
   }
 
   setLoop(): void {
@@ -107,5 +111,6 @@ export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
 
   getOut() {
     this.leave.emit(this.sound);
+    this.sendAudio();
   }
 }
