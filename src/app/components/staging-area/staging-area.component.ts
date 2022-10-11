@@ -9,9 +9,15 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlay,
+  faPause,
+  faStop,
+  faArrowRotateLeft,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 
-import { SendedSound, Sound } from 'src/app/models';
+import { ForceFunction, SendedSound, Sound } from 'src/app/models';
 import { PlayerComponent } from '../player';
 
 @Component({
@@ -22,8 +28,16 @@ import { PlayerComponent } from '../player';
 export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
   @Input() sendedSound: SendedSound;
   @Input() player: PlayerComponent;
-
+  faPlay = faPlay;
+  faStop = faStop;
+  faPause = faPause;
+  faArrowRotateLeft = faArrowRotateLeft;
   faTrashCan = faTrashCan;
+  forcePlay: boolean;
+  forcePause: boolean;
+  forceStop: boolean;
+  loop: boolean;
+  forceFunction: ForceFunction;
 
   sounds: Sound[];
 
@@ -31,10 +45,35 @@ export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.sounds = [];
+    this.initForce();
+    this.setForceFunction();
+  }
+
+  setForceFunction(): void {
+    this.forceFunction = {
+      forcePlay: this.forcePlay,
+      forcePause: this.forcePause,
+      forceStop: this.forceStop,
+      forceLoop: this.loop,
+    };
+  }
+
+  initForce(): void {
+    this.forcePlay = false;
+    this.forcePause = false;
+    this.forceStop = false;
+    this.loop = false;
   }
 
   ngOnDestroy(): void {
-    console.log('DESTROYED');
+    this.initForce();
+    this.forceFunction = {
+      forcePlay: this.forcePlay,
+      forcePause: this.forcePause,
+      forceStop: this.forceStop,
+      forceLoop: this.loop,
+    };
+    this.cd.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -42,6 +81,36 @@ export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
     if (newSound !== undefined) {
       this.sounds.push(newSound);
     }
+  }
+
+  setLoop(): void {
+    this.loop = !this.loop;
+    this.setForceFunction();
+    this.cd.detectChanges();
+  }
+
+  setForcePlay(): void {
+    this.forcePlay = !this.forcePlay;
+    this.forcePause = false;
+    this.forceStop = false;
+    this.setForceFunction();
+    this.cd.detectChanges();
+  }
+
+  setForcePause(): void {
+    this.forcePause = !this.forcePause;
+    this.forcePlay = false;
+    this.forceStop = false;
+    this.setForceFunction();
+    this.cd.detectChanges();
+  }
+
+  setForceStop(): void {
+    this.forceStop = !this.forceStop;
+    this.forcePlay = false;
+    this.forcePause = false;
+    this.setForceFunction();
+    this.cd.detectChanges();
   }
 
   clear(): void {

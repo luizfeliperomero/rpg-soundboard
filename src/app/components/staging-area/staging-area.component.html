@@ -1,12 +1,26 @@
 <div *ngIf="sounds.length > 0" class="staging-area">
   <div class="functions">
-    <fa-icon (click)="clear()" [icon]="faTrashCan"></fa-icon>
+    <fa-icon (click)="clear()" [icon]="faTrashCan" class="trashIcon"></fa-icon>
   </div>
   <div class="players">
     <app-player
+      [forceFunction]="forceFunction"
       (leave)="removeSound($event)"
       *ngFor="let sound of sounds"
       [sound]="sound"
     ></app-player>
+  </div>
+  <div class="big-player">
+    <fa-icon (click)="setForcePlay()" [icon]="faPlay" size="lg"></fa-icon>
+    <fa-icon (click)="setForcePause()" [icon]="faPause" size="lg"></fa-icon>
+    <fa-icon (click)="setForceStop()" [icon]="faStop" size="lg"></fa-icon>
+    <fa-icon
+      (click)="setLoop()"
+      [icon]="faArrowRotateLeft"
+      size="lg"
+      [ngClass]="{
+        loop: loop
+      }"
+    ></fa-icon>
   </div>
 </div>

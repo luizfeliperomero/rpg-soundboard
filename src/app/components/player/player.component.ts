@@ -1,9 +1,8 @@
 import {
-  ChangeDetectionStrategy,
   Component,
-  DoCheck,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -17,7 +16,7 @@ import {
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { Sound } from 'src/app/models';
+import { ForceFunction, Sound } from 'src/app/models';
 import { PlayerService } from 'src/app/services';
 
 @Component({
@@ -25,13 +24,14 @@ import { PlayerService } from 'src/app/services';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css'],
 })
-export class PlayerComponent implements OnInit, OnDestroy {
+export class PlayerComponent implements OnInit, OnDestroy, OnChanges {
   faPlay = faPlay;
   faPause = faPause;
   faStop = faStop;
   faLoop = faArrowRotateLeft;
   faTrashCan = faTrashCan;
   @Input() sound: Sound;
+  @Input() forceFunction: ForceFunction;
   @Output() started: EventEmitter<Sound> = new EventEmitter();
   @Output() leave: EventEmitter<Sound> = new EventEmitter();
   audio = new Audio();
@@ -48,6 +48,23 @@ export class PlayerComponent implements OnInit, OnDestroy {
       staged: this.staged,
       soundId: this.sound.id,
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['forceFunction']['currentValue']['forcePlay']) {
+      this.play();
+    }
+    if (changes['forceFunction']['currentValue']['forcePause']) {
+      this.pause();
+    }
+    if (changes['forceFunction']['currentValue']['forceStop']) {
+      this.stop();
+    }
+    if (changes['forceFunction']['currentValue']['forceLoop']) {
+      this.audio.loop = true;
+    } else {
+      this.audio.loop = false;
+    }
   }
 
   sendAudio(): void {

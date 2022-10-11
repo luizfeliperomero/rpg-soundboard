@@ -14,12 +14,19 @@
   animation-duration: 0.8s;
 }
 
+.loop {
+  animation: 3s spin infinite linear;
+}
+
 fa-icon {
   cursor: pointer;
+}
+
+.trashIcon {
   color: #f00;
 }
 
-fa-icon:hover {
+.trashIcon:hover {
   color: #b00;
 }
 
@@ -30,11 +37,27 @@ fa-icon:hover {
   flex-wrap: wrap;
 }
 
+.big-player {
+  display: flex;
+  justify-content: space-evenly;
+  color: #fff;
+  width: 100%;
+}
+
 @keyframes slide {
   from {
     transform: scale(0);
   }
   to {
     transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
   }
 }
