@@ -1,9 +1,8 @@
 .inside {
   width: 450px;
   min-height: 450px;
-  background-color: #0004;
+  background-color: #0008;
   border: 10px solid #1d1c1a;
-  border-radius: 20px;
   display: flex;
   flex-direction: column;
   gap: 30px;
