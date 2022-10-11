@@ -122,6 +122,9 @@ export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
     this.sounds.forEach((el, i) => {
       if (el.id === event.id) {
         this.sounds.splice(i, 1);
+        if (this.sounds.length === 0) {
+          this.ngOnDestroy();
+        }
       }
     });
   }

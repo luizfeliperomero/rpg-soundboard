@@ -11,9 +11,30 @@
     ></app-player>
   </div>
   <div class="big-player">
-    <fa-icon (click)="setForcePlay()" [icon]="faPlay" size="lg"></fa-icon>
-    <fa-icon (click)="setForcePause()" [icon]="faPause" size="lg"></fa-icon>
-    <fa-icon (click)="setForceStop()" [icon]="faStop" size="lg"></fa-icon>
+    <fa-icon
+      [ngClass]="{
+        forcePlayOn: forcePlay
+      }"
+      (click)="setForcePlay()"
+      [icon]="faPlay"
+      size="lg"
+    ></fa-icon>
+    <fa-icon
+      [ngClass]="{
+        forcePauseOn: forcePause
+      }"
+      (click)="setForcePause()"
+      [icon]="faPause"
+      size="lg"
+    ></fa-icon>
+    <fa-icon
+      [ngClass]="{
+        forceStopOn: forceStop
+      }"
+      (click)="setForceStop()"
+      [icon]="faStop"
+      size="lg"
+    ></fa-icon>
     <fa-icon
       (click)="setLoop()"
       [icon]="faArrowRotateLeft"

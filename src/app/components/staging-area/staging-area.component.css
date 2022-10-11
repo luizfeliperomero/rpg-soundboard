@@ -30,6 +30,18 @@ fa-icon {
   color: #b00;
 }
 
+.forcePlayOn {
+  color: #0f0;
+}
+
+.forcePauseOn {
+  color: #ff0;
+}
+
+.forceStopOn {
+  color: #f00;
+}
+
 .players {
   display: flex;
   justify-content: center;
