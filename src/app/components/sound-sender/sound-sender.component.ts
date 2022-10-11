@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SendedSound, Sound } from 'src/app/models';
-import { PlayerService } from 'src/app/services';
+import { PlayerService, SoundService } from 'src/app/services';
 import {
   faPenToSquare,
   faTrashCan,
@@ -25,6 +25,7 @@ import {
 export class SoundSenderComponent implements OnInit, OnDestroy {
   @Input() sound: Sound;
   @Output() emitter: EventEmitter<SendedSound> = new EventEmitter();
+  @Output() deleted: EventEmitter<boolean> = new EventEmitter();
   audio: HTMLAudioElement;
   subscriptions: Subscription[];
   sendedSound: SendedSound;
@@ -36,6 +37,7 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   autoPlay: boolean = false;
 
   constructor(
+    private soundService: SoundService,
     private playerService: PlayerService,
     private cd: ChangeDetectorRef
   ) {}
@@ -72,6 +74,18 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
           this.cd.detectChanges();
         }
       })
+    );
+  }
+
+  delete(): void {
+    this.subscriptions.push(
+      this.soundService.delete(this.sound).subscribe(
+        () => {},
+        () => {},
+        () => {
+          this.deleted.emit(true);
+        }
+      )
     );
   }
 

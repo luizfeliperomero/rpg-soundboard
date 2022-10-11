@@ -18,6 +18,10 @@ export class SoundService {
     return this.http.post<Sound>(`${this.API}/save`, sound, { params: params });
   }
 
+  delete(sound: Sound): Observable<any> {
+    return this.http.post(`${this.API}/delete`, sound);
+  }
+
   uploadFile(file, playlist_id: string): Observable<Sound> {
     let formData = new FormData();
     let params = new HttpParams().set('playlist_id', playlist_id);

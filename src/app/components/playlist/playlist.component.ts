@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -35,10 +34,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   uploading: boolean = false;
   uploadingMessage: String = '';
 
-  constructor(
-    private soundService: SoundService,
-    private cd: ChangeDetectorRef
-  ) {}
+  constructor(private soundService: SoundService) {}
 
   ngOnInit(): void {
     this.getPlaylistSounds();
@@ -103,5 +99,9 @@ export class PlaylistComponent implements OnInit, OnDestroy {
 
   soundStarted(event) {
     this.started.emit(event);
+  }
+
+  soundDeleted(event) {
+    this.getPlaylistSounds();
   }
 }

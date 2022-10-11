@@ -1,6 +1,10 @@
 <div class="sound-sender">
   <div class="functions">
-    <fa-icon style="color: #f00" [icon]="faTrashCan"></fa-icon>
+    <fa-icon
+      (click)="delete()"
+      style="color: #f00"
+      [icon]="faTrashCan"
+    ></fa-icon>
     <fa-icon style="color: #ddd" [icon]="faPenToSquare"></fa-icon>
   </div>
   <button

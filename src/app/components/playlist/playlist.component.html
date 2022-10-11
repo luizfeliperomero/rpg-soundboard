@@ -18,6 +18,7 @@
     <div class="name">{{ playlist.name }}</div>
     <div class="sounds">
       <app-sound-sender
+        (deleted)="soundDeleted($event)"
         (emitter)="soundStarted($event)"
         *ngFor="let sound of sounds"
         [sound]="sound"
