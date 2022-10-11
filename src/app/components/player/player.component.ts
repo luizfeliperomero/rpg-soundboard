@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   DoCheck,
   EventEmitter,
@@ -6,6 +7,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import {
   faPlay,
