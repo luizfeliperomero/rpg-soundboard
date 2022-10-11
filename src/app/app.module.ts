@@ -17,6 +17,7 @@ import {
   StagingAreaComponent,
   SoundSenderComponent,
   EditSoundModalComponent,
+  EditPlaylistModalComponent,
 } from './components/';
 import {
   UserService,
@@ -38,6 +39,7 @@ import {
     StagingAreaComponent,
     SoundSenderComponent,
     EditSoundModalComponent,
+    EditPlaylistModalComponent,
   ],
   imports: [
     BrowserModule,

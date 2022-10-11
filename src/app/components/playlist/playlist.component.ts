@@ -29,6 +29,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   @Input() playlist: Playlist;
   @Output() started: EventEmitter<Sound> = new EventEmitter();
   @Output() deleted: EventEmitter<boolean> = new EventEmitter();
+  showEdit: boolean = false;
   newSound: Sound;
   sounds: Sound[];
   faPlusCircle = faCirclePlus;
@@ -64,6 +65,10 @@ export class PlaylistComponent implements OnInit, OnDestroy {
       };
     }
     this.uploadFile(file);
+  }
+
+  setShowEdit(): void {
+    this.showEdit = !this.showEdit;
   }
 
   setUploading(): void {
@@ -127,5 +132,10 @@ export class PlaylistComponent implements OnInit, OnDestroy {
 
   soundEdited(event) {
     this.getPlaylistSounds();
+  }
+
+  playlistEdited(event) {
+    this.getPlaylistSounds();
+    this.setShowEdit();
   }
 }

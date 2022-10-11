@@ -8,3 +8,4 @@ export * from './login';
 export * from './staging-area';
 export * from './sound-sender';
 export * from './edit-sound-modal';
+export * from './edit-playlist-modal';

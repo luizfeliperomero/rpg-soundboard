@@ -19,7 +19,11 @@
         [icon]="faPlusCircle"
         (click)="uploadFile.click()"
       ></fa-icon>
-      <fa-icon style="color: #fff" [icon]="faPenToSquare"></fa-icon>
+      <fa-icon
+        (click)="setShowEdit()"
+        style="color: #fff"
+        [icon]="faPenToSquare"
+      ></fa-icon>
     </div>
     <div class="name">{{ playlist.name }}</div>
     <div class="sounds">
@@ -47,3 +51,9 @@
   </div>
   <div class="overlay" *ngIf="uploading" (click)="setUploading()"></div>
 </div>
+<app-edit-playlist-modal
+  (editConfirmation)="playlistEdited($event)"
+  [playlist]="playlist"
+  *ngIf="showEdit"
+></app-edit-playlist-modal>
+<div *ngIf="showEdit" (click)="setShowEdit()" class="overlay"></div>
