@@ -26,6 +26,7 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   @Input() sound: Sound;
   @Output() emitter: EventEmitter<SendedSound> = new EventEmitter();
   @Output() deleted: EventEmitter<boolean> = new EventEmitter();
+  @Output() sendEditedConfirmation: EventEmitter<boolean> = new EventEmitter();
   audio: HTMLAudioElement;
   subscriptions: Subscription[];
   sendedSound: SendedSound;
@@ -35,6 +36,7 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   faToggleOff = faToggleOff;
   staged: boolean = false;
   autoPlay: boolean = false;
+  editSound: boolean = false;
 
   constructor(
     private soundService: SoundService,
@@ -89,6 +91,10 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
     );
   }
 
+  setEditSound(): void {
+    this.editSound = !this.editSound;
+  }
+
   setAutoPlay(): void {
     this.autoPlay = !this.autoPlay;
   }
@@ -101,5 +107,10 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
       timestamp: Date.now(),
     };
     this.emitter.emit(this.sendedSound);
+  }
+
+  soundEdited(event): void {
+    this.sendEditedConfirmation.emit(event);
+    this.setEditSound();
   }
 }

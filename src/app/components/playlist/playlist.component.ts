@@ -104,4 +104,8 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   soundDeleted(event) {
     this.getPlaylistSounds();
   }
+
+  soundEdited(event) {
+    this.getPlaylistSounds();
+  }
 }

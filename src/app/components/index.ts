@@ -7,3 +7,4 @@ export * from './create-user';
 export * from './login';
 export * from './staging-area';
 export * from './sound-sender';
+export * from './edit-sound-modal';

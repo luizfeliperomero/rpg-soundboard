@@ -1,0 +1,9 @@
+<div class="editSound">
+  <form [formGroup]="form">
+    <div class="field">
+      <label>Name</label>
+      <input type="text" formControlName="name" />
+    </div>
+  </form>
+  <button (click)="send()" class="btnSuccess">Confirm</button>
+</div>
