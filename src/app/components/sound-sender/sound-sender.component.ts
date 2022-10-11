@@ -30,6 +30,7 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.subscriptions = [];
     this.getUpdatedAudio();
     this.getStagedState();
   }
