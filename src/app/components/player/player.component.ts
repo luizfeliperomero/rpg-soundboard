@@ -39,6 +39,9 @@ export class PlayerComponent implements OnInit, OnDestroy, DoCheck {
   constructor(private playerService: PlayerService) {}
 
   ngOnInit(): void {
+    if (this.sound.autoPlay) {
+      this.play();
+    }
     this.playerService.sendStagedStatus({
       staged: this.staged,
       soundId: this.sound.id,

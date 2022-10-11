@@ -41,7 +41,6 @@ export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
     if (newSound !== undefined) {
       this.sounds.push(newSound);
     }
-    console.log(this.sounds.length);
   }
 
   clear(): void {

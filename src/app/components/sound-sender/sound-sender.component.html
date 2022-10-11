@@ -1,4 +1,8 @@
 <div class="sound-sender">
+  <div class="functions">
+    <fa-icon style="color: #f00" [icon]="faTrashCan"></fa-icon>
+    <fa-icon style="color: #ddd" [icon]="faPenToSquare"></fa-icon>
+  </div>
   <button
     [ngClass]="{
       staged: staged,
@@ -8,4 +12,19 @@
   >
     <strong>{{ sound.name }}</strong>
   </button>
+  <div class="auto-play">
+    <fa-icon
+      *ngIf="autoPlay"
+      (click)="setAutoPlay()"
+      style="color: #0d0"
+      [icon]="faToggleOn"
+    ></fa-icon>
+    <fa-icon
+      *ngIf="!autoPlay"
+      (click)="setAutoPlay()"
+      style="color: #fff"
+      [icon]="faToggleOff"
+    ></fa-icon>
+    <p style="color: #d6d6d6; font-size: 14px">Auto-Play</p>
+  </div>
 </div>

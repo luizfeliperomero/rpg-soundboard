@@ -2,13 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid #bdbdbd;
   padding: 5px;
   margin: 0;
   width: 140px;
-  gap: 10px;
+  gap: 5px;
   background-color: #0003;
   background: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 button {
@@ -60,4 +61,20 @@ button:hover {
 .playing:hover {
   background-color: #0f0;
   color: #000;
+}
+
+.functions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+fa-icon {
+  cursor: pointer;
+}
+
+.auto-play {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
