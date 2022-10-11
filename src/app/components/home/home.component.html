@@ -8,6 +8,7 @@
   <div class="playlists">
     <app-playlist
       (started)="soundStarted($event)"
+      (deleted)="playlistDeleted($event)"
       *ngFor="let playlist of playlists"
       [playlist]="playlist"
     ></app-playlist>

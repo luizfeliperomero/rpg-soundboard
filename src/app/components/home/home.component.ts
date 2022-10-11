@@ -43,4 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   soundStarted(event) {
     this.sendedSound = event;
   }
+
+  playlistDeleted(event) {
+    this.getUserPlaylists();
+  }
 }

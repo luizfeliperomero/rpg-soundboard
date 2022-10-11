@@ -10,11 +10,13 @@ import {
   faCirclePlus,
   faSpinner,
   faCheck,
+  faTrashCan,
+  faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
 import { Playlist, Sound } from 'src/app/models';
-import { SoundService } from 'src/app/services';
+import { PlaylistService, SoundService } from 'src/app/services';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -26,6 +28,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   @Input() playlist: Playlist;
   @Output() started: EventEmitter<Sound> = new EventEmitter();
+  @Output() deleted: EventEmitter<boolean> = new EventEmitter();
   newSound: Sound;
   sounds: Sound[];
   faPlusCircle = faCirclePlus;
@@ -33,8 +36,13 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   faCheck = faCheck;
   uploading: boolean = false;
   uploadingMessage: String = '';
+  faPenToSquare = faPenToSquare;
+  faTrashCan = faTrashCan;
 
-  constructor(private soundService: SoundService) {}
+  constructor(
+    private soundService: SoundService,
+    private playlistService: PlaylistService
+  ) {}
 
   ngOnInit(): void {
     this.getPlaylistSounds();
@@ -82,6 +90,18 @@ export class PlaylistComponent implements OnInit, OnDestroy {
             this.getPlaylistSounds();
             this.setUploading();
           }, 2000);
+        }
+      )
+    );
+  }
+
+  delete(): void {
+    this.subscriptions.push(
+      this.playlistService.delete(this.playlist).subscribe(
+        () => {},
+        () => {},
+        () => {
+          this.deleted.emit(true);
         }
       )
     );

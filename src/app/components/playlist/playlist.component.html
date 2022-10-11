@@ -10,10 +10,16 @@
   <div class="inside">
     <div class="functions">
       <fa-icon
+        (click)="delete()"
+        style="color: #f00"
+        [icon]="faTrashCan"
+      ></fa-icon>
+      <fa-icon
         style="color: #0f0; cursor: pointer"
         [icon]="faPlusCircle"
         (click)="uploadFile.click()"
       ></fa-icon>
+      <fa-icon style="color: #fff" [icon]="faPenToSquare"></fa-icon>
     </div>
     <div class="name">{{ playlist.name }}</div>
     <div class="sounds">

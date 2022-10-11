@@ -20,6 +20,14 @@ export class PlaylistService {
     });
   }
 
+  edit(playlist: Playlist): Observable<any> {
+    return this.http.post(`${this.API}/update`, playlist);
+  }
+
+  delete(playlist: Playlist): Observable<any> {
+    return this.http.post(`${this.API}/delete`, playlist);
+  }
+
   getUserPlaylists(user_id: number): Observable<Playlist[]> {
     return this.http.get<Playlist[]>(`${this.API}/findPlaylists/${user_id}`);
   }
