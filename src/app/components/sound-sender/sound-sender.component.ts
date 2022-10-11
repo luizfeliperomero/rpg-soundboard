@@ -3,9 +3,11 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SendedSound, Sound } from 'src/app/models';
 import { PlayerService } from 'src/app/services';
 
@@ -14,10 +16,11 @@ import { PlayerService } from 'src/app/services';
   templateUrl: './sound-sender.component.html',
   styleUrls: ['./sound-sender.component.css'],
 })
-export class SoundSenderComponent implements OnInit {
+export class SoundSenderComponent implements OnInit, OnDestroy {
   @Input() sound: Sound;
   @Output() emitter: EventEmitter<SendedSound> = new EventEmitter();
   audio: HTMLAudioElement;
+  subscriptions: Subscription[];
   sendedSound: SendedSound;
   staged: boolean = false;
 
@@ -31,23 +34,33 @@ export class SoundSenderComponent implements OnInit {
     this.getStagedState();
   }
 
-  getUpdatedAudio(): void {
-    this.playerService.getAudio().subscribe((data) => {
-      if (data.soundId === this.sound.id) {
-        setTimeout(() => {
-          this.audio = data.audio;
-        }, 0);
-      }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((s) => {
+      s.unsubscribe();
     });
   }
 
+  getUpdatedAudio(): void {
+    this.subscriptions.push(
+      this.playerService.getAudio().subscribe((data) => {
+        if (data.soundId === this.sound.id) {
+          setTimeout(() => {
+            this.audio = data.audio;
+          }, 0);
+        }
+      })
+    );
+  }
+
   getStagedState(): void {
-    this.playerService.isStaged().subscribe((data) => {
-      if (data.soundId === this.sound.id) {
-        this.staged = data.staged;
-        this.cd.detectChanges();
-      }
-    });
+    this.subscriptions.push(
+      this.playerService.isStaged().subscribe((data) => {
+        if (data.soundId === this.sound.id) {
+          this.staged = data.staged;
+          this.cd.detectChanges();
+        }
+      })
+    );
   }
 
   emitSound(): void {

@@ -3,6 +3,7 @@ import {
   Component,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -17,27 +18,35 @@ import { PlayerComponent } from '../player';
   templateUrl: './staging-area.component.html',
   styleUrls: ['./staging-area.component.css'],
 })
-export class StagingAreaComponent implements OnInit, OnChanges {
+export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
   @Input() sendedSound: SendedSound;
   @Input() player: PlayerComponent;
 
   faTrashCan = faTrashCan;
 
-  sounds: Sound[] = [];
+  sounds: Sound[];
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sounds = [];
+  }
+
+  ngOnDestroy(): void {
+    console.log('DESTROYED');
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    var newSound = changes['sendedSound']['currentValue']['sound'];
+    let newSound: Sound = changes['sendedSound']['currentValue']['sound'];
     if (newSound !== undefined) {
       this.sounds.push(newSound);
     }
+    console.log(this.sounds.length);
   }
 
   clear(): void {
     this.sounds = [];
+    this.ngOnDestroy();
   }
 
   removeSound(event: Sound): void {
