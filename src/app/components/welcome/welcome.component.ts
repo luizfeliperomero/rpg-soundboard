@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,14 +6,25 @@ import { Router } from '@angular/router';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css'],
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent implements OnInit, OnDestroy {
   showSignIn: boolean = false;
   showSignUp: boolean = false;
   signUpSuccess: boolean = false;
+  audio: HTMLAudioElement = new Audio();
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void {
+    this.audio.pause();
+  }
+
+  ngOnInit(): void {
+    this.audio.src =
+      'http://192.168.1.101:8080/api/v1/sound/getAudio/-64001108d58420f1d50b3b187f3e0e053b10606e';
+    this.audio.load();
+    this.audio.play();
+    this.audio.loop = true;
+  }
 
   setShowSignIn(): void {
     this.showSignIn = !this.showSignIn;

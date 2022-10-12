@@ -2,15 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 100px;
-  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
+  z-index: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
     url("../../../assets/mountains-bg.jpg");
-  background-position: center;
-  background-attachment: fixed;
+  background-position: 50%;
   background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
 
 h1 {
@@ -65,4 +68,62 @@ button {
   top: 0;
   width: 100vw;
   z-index: 10;
+}
+
+.content {
+  z-index: 30;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10%;
+  align-items: center;
+  height: 100%;
+}
+
+.fog {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.fog-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.fog-img {
+  position: absolute;
+  height: 100vh;
+  width: 300vw;
+  z-index: 2;
+}
+
+.fog-img-first {
+  background-repeat: repeat-x;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+    url("../../../assets/fog-1.png");
+  background-size: contain;
+  background-position: center;
+  animation: marquee 60s linear infinite;
+}
+
+.fog-img-second {
+  background: url("../../../assets/fog-2.png");
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-200vw, 0, 0);
+  }
 }

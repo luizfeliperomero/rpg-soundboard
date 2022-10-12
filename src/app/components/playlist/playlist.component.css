@@ -1,8 +1,19 @@
-.inside {
+.inside-default {
   width: 450px;
   min-height: 450px;
   background-color: #0008;
   border: 10px solid #1d1c1a;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 10px;
+}
+
+.inside-medieval {
+  width: 450px;
+  min-height: 450px;
+  background-color: #d6891080;
+  border: 10px solid #9c640c;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -15,6 +26,16 @@
   justify-content: center;
   background-color: #1d1c1a;
   border-radius: 5px;
+  cursor: default;
+}
+
+.name-medieval {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  background-color: #664c28;
+  border-radius: 5px;
+  cursor: default;
 }
 
 .sounds {

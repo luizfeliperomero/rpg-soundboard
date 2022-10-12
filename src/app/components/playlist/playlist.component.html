@@ -7,7 +7,12 @@
     #uploadFile
   />
 
-  <div class="inside">
+  <div
+    [ngClass]="{
+      'inside-default': theme != 3,
+      'inside-medieval': theme == 3
+    }"
+  >
     <div class="functions">
       <fa-icon
         (click)="delete()"
@@ -25,7 +30,14 @@
         [icon]="faPenToSquare"
       ></fa-icon>
     </div>
-    <div class="name">{{ playlist.name }}</div>
+    <div
+      [ngClass]="{
+        'name-medieval': theme == 3,
+        name: theme != 3
+      }"
+    >
+      {{ playlist.name }}
+    </div>
     <div class="sounds">
       <app-sound-sender
         (edited)="soundEdited($event)"

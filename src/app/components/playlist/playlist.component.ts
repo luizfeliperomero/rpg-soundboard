@@ -16,7 +16,8 @@ import {
 import { Subscription } from 'rxjs';
 
 import { Playlist, Sound } from 'src/app/models';
-import { PlaylistService, SoundService } from 'src/app/services';
+import { Theme } from 'src/app/models/Theme';
+import { GlobalService, PlaylistService, SoundService } from 'src/app/services';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -30,6 +31,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   @Output() started: EventEmitter<Sound> = new EventEmitter();
   @Output() deleted: EventEmitter<boolean> = new EventEmitter();
   showEdit: boolean = false;
+  theme: Theme;
   newSound: Sound;
   sounds: Sound[];
   faPlusCircle = faCirclePlus;
@@ -42,10 +44,12 @@ export class PlaylistComponent implements OnInit, OnDestroy {
 
   constructor(
     private soundService: SoundService,
-    private playlistService: PlaylistService
+    private playlistService: PlaylistService,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit(): void {
+    this.getTheme();
     this.getPlaylistSounds();
   }
 
@@ -109,6 +113,14 @@ export class PlaylistComponent implements OnInit, OnDestroy {
           this.deleted.emit(true);
         }
       )
+    );
+  }
+
+  getTheme(): void {
+    this.subscriptions.push(
+      this.globalService.getTheme().subscribe((data) => {
+        this.theme = data;
+      })
     );
   }
 
