@@ -108,7 +108,7 @@ button {
     url("../../../assets/fog-1.png");
   background-size: contain;
   background-position: center;
-  animation: marquee 60s linear infinite;
+  animation: marquee 90s linear infinite;
 }
 
 .fog-img-second {
@@ -116,7 +116,7 @@ button {
   background-repeat: repeat-x;
   background-size: contain;
   background-position: center;
-  animation: marquee 30s linear infinite;
+  animation: marquee 50s linear infinite;
 }
 
 @keyframes marquee {
