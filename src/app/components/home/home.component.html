@@ -14,7 +14,10 @@
     ></app-playlist>
   </div>
 </div>
-<app-add-playlist-modal *ngIf="showAddPlaylistModal"></app-add-playlist-modal>
+<app-add-playlist-modal
+  (sendConfirmation)="onNewPlaylist()"
+  *ngIf="showAddPlaylistModal"
+></app-add-playlist-modal>
 <div
   *ngIf="showAddPlaylistModal"
   (click)="setShowAddPlaylistModal()"

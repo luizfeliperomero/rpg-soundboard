@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Playlist, User } from 'src/app/models';
 import { PlaylistService } from 'src/app/services';
@@ -12,6 +12,8 @@ export class AddPlaylistModalComponent implements OnInit {
   form: FormGroup;
   user: User;
   playlist: Playlist;
+  @Output() sendConfirmation: EventEmitter<boolean> =
+    new EventEmitter<boolean>();
   constructor(
     private playlistService: PlaylistService,
     private formBuilder: FormBuilder
@@ -28,7 +30,7 @@ export class AddPlaylistModalComponent implements OnInit {
   submit(): void {
     this.playlist = this.form.value;
     this.playlistService.save(this.playlist, this.user.id).subscribe((data) => {
-      console.log(data);
+      this.sendConfirmation.emit(true);
     });
   }
 }

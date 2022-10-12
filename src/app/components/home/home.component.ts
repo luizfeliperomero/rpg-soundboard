@@ -47,4 +47,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   playlistDeleted(event) {
     this.getUserPlaylists();
   }
+
+  onNewPlaylist() {
+    this.getUserPlaylists();
+    this.setShowAddPlaylistModal();
+  }
 }
