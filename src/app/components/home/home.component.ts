@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.theme = Theme.SPACE;
       this.sendTheme(this.theme);
     }
-    if (theme === 'Post Apocalyptc') {
+    if (theme === 'Post Apocalyptic') {
       this.theme = Theme.POST_APOCALYPTC;
       this.sendTheme(this.theme);
     }
