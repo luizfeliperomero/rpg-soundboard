@@ -16,7 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
-import { Playlist, Sound } from 'src/app/models';
+import { Playlist, Sound, User } from 'src/app/models';
 import { Theme } from 'src/app/models/Theme';
 import { GlobalService, PlaylistService, SoundService } from 'src/app/services';
 import { environment } from 'src/environments/environment';
@@ -31,6 +31,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   @Input() playlist: Playlist;
   @Output() started: EventEmitter<Sound> = new EventEmitter();
   @Output() deleted: EventEmitter<boolean> = new EventEmitter();
+  user: User;
   showEdit: boolean = false;
   theme: Theme;
   newSound: Sound;
@@ -51,6 +52,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
     this.getTheme();
     this.getPlaylistSounds();
   }
@@ -85,24 +87,26 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     this.setUploading();
     this.uploadingMessage = 'Uploading';
     this.subscriptions.push(
-      this.soundService.uploadFile(file, this.playlist.id).subscribe(
-        (success) => {
-          this.uploadingMessage = "Uploading, Please don't refresh the page";
-        },
-        (err) => {
-          this.uploadingMessage = 'Sorry, something went wrong';
-          setTimeout(() => {
-            this.setUploading();
-          }, 5000);
-        },
-        () => {
-          this.uploadingMessage = 'Upload completed!';
-          setTimeout(() => {
-            this.getPlaylistSounds();
-            this.setUploading();
-          }, 2000);
-        }
-      )
+      this.soundService
+        .uploadFile(file, this.playlist.id, String(this.user.id))
+        .subscribe(
+          (success) => {
+            this.uploadingMessage = "Uploading, Please don't refresh the page";
+          },
+          (err) => {
+            this.uploadingMessage = 'Sorry, something went wrong';
+            setTimeout(() => {
+              this.setUploading();
+            }, 5000);
+          },
+          () => {
+            this.uploadingMessage = 'Upload completed!';
+            setTimeout(() => {
+              this.getPlaylistSounds();
+              this.setUploading();
+            }, 2000);
+          }
+        )
     );
   }
 

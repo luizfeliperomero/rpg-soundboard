@@ -26,9 +26,11 @@ export class SoundService {
     return this.http.post(`${this.API}/update`, sound);
   }
 
-  uploadFile(file, playlist_id: string): Observable<Sound> {
+  uploadFile(file, playlist_id: string, user_id: string): Observable<Sound> {
     let formData = new FormData();
-    let params = new HttpParams().set('playlist_id', playlist_id);
+    let params = new HttpParams()
+      .set('playlist_id', playlist_id)
+      .set('user_id', user_id);
     formData.append('file', file);
     return this.http.post<Sound>(`${this.API}/uploadFile`, formData, {
       params: params,
