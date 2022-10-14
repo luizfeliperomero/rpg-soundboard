@@ -19,7 +19,8 @@
   min-height: 100vh;
   padding: 20px;
   width: 100%;
-  background-image: url("../../../assets/space-bg.jpg");
+  background-image: url("../../../assets/spaceships.jpg");
+  background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
 }
@@ -46,6 +47,19 @@
   padding: 20px;
   width: 100%;
   background-image: url("../../../assets/medieval-bg.webp");
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.app-medieval-fantasy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+  background-image: url("../../../assets/medieval-fantasy-bg.jpg");
   background-position: center;
   background-attachment: fixed;
 }

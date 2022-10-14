@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Playlist } from '../models';
+import { Playlist, Sound } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlaylistService {
+  private playlistSubject: Subject<Sound[]> = new Subject<Sound[]>();
+  private playlist$ = this.playlistSubject.asObservable();
   API: string = `${environment.API}/api/v1/playlist`;
 
   constructor(private http: HttpClient) {}
@@ -30,5 +32,13 @@ export class PlaylistService {
 
   getUserPlaylists(user_id: number): Observable<Playlist[]> {
     return this.http.get<Playlist[]>(`${this.API}/findPlaylists/${user_id}`);
+  }
+
+  sendPlaylist(sounds: Sound[]): void {
+    this.playlistSubject.next(sounds);
+  }
+
+  getPlaylist(): Observable<Sound[]> {
+    return this.playlist$;
   }
 }

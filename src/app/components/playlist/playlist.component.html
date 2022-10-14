@@ -9,8 +9,10 @@
 
   <div
     [ngClass]="{
-      'inside-default': theme != 3,
-      'inside-medieval': theme == 3
+      'inside-default': theme == 1 || theme == 0 || theme == undefined,
+      'inside-medieval': theme == 3,
+      'inside-space': theme == 4,
+      'inside-medieval-fantasy': theme == 2
     }"
   >
     <div class="functions">
@@ -19,6 +21,16 @@
         style="color: #f00"
         [icon]="faTrashCan"
       ></fa-icon>
+      <div
+        [ngClass]="{
+          'stage-default': theme != 4 && theme != 2,
+          'stage-space': theme == 4 || theme == 2
+        }"
+        (click)="sendToStageArea()"
+      >
+        <p>Stage</p>
+        <fa-icon [icon]="faArrowUp"></fa-icon>
+      </div>
       <fa-icon
         style="color: #0f0; cursor: pointer"
         [icon]="faPlusCircle"
@@ -33,7 +45,8 @@
     <div
       [ngClass]="{
         'name-medieval': theme == 3,
-        name: theme != 3
+        name: theme != 3 && theme != 4,
+        'name-space': theme == 4
       }"
     >
       {{ playlist.name }}

@@ -1,12 +1,10 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   SimpleChanges,
 } from '@angular/core';
 import {
@@ -16,8 +14,10 @@ import {
   faArrowRotateLeft,
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 
 import { ForceFunction, SendedSound, Sound } from 'src/app/models';
+import { PlaylistService } from 'src/app/services';
 import { PlayerComponent } from '../player';
 
 @Component({
@@ -38,15 +38,19 @@ export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
   forceStop: boolean;
   loop: boolean;
   forceFunction: ForceFunction;
-
+  subscriptions: Subscription[] = [];
   sounds: Sound[];
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(
+    private cd: ChangeDetectorRef,
+    private playlistService: PlaylistService
+  ) {}
 
   ngOnInit(): void {
     this.sounds = [];
     this.initForce();
     this.setForceFunction();
+    this.concatPlaylist();
   }
 
   setForceFunction(): void {
@@ -73,6 +77,7 @@ export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
       forceStop: this.forceStop,
       forceLoop: this.loop,
     };
+    this.subscriptions.forEach((s) => s.unsubscribe());
     this.cd.detectChanges();
   }
 
@@ -81,6 +86,12 @@ export class StagingAreaComponent implements OnInit, OnChanges, OnDestroy {
     if (newSound !== undefined) {
       this.sounds.push(newSound);
     }
+  }
+
+  concatPlaylist(): void {
+    this.playlistService.getPlaylist().subscribe((data) => {
+      this.sounds = [...this.sounds, ...data];
+    });
   }
 
   setLoop(): void {

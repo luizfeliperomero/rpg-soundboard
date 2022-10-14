@@ -12,6 +12,7 @@ import {
   faCheck,
   faTrashCan,
   faPenToSquare,
+  faArrowUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
@@ -37,6 +38,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   faPlusCircle = faCirclePlus;
   faSpinner = faSpinner;
   faCheck = faCheck;
+  faArrowUp = faArrowUp;
   uploading: boolean = false;
   uploadingMessage: String = '';
   faPenToSquare = faPenToSquare;
@@ -114,6 +116,10 @@ export class PlaylistComponent implements OnInit, OnDestroy {
         }
       )
     );
+  }
+
+  sendToStageArea(): void {
+    this.playlistService.sendPlaylist(this.sounds);
   }
 
   getTheme(): void {

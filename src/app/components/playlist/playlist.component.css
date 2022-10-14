@@ -20,6 +20,29 @@
   padding: 10px;
 }
 
+.inside-space {
+  font-family: "VT323", monospace;
+  width: 450px;
+  min-height: 450px;
+  background-color: #a4f64480;
+  border: 10px solid #414767;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 10px;
+}
+
+.inside-medieval-fantasy {
+  width: 450px;
+  min-height: 450px;
+  background-color: #fff8;
+  border: 10px solid #1d1c1a;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 10px;
+}
+
 .name {
   color: #fff;
   display: flex;
@@ -34,6 +57,16 @@
   display: flex;
   justify-content: center;
   background-color: #664c28;
+  border-radius: 5px;
+  cursor: default;
+}
+
+.name-space {
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  background-color: #5ec986;
   border-radius: 5px;
   cursor: default;
 }
@@ -91,6 +124,21 @@ fa-icon {
   top: 0;
   width: 100vw;
   z-index: 10;
+}
+
+.stage-default {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  color: #96ded1;
+}
+.stage-space {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  color: #023020;
 }
 
 @keyframes spin {
