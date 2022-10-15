@@ -41,4 +41,10 @@ export class PlaylistService {
   getPlaylist(): Observable<Sound[]> {
     return this.playlist$;
   }
+
+  getPlaylistsWhereSoundNotExists(soundId: number): Observable<Playlist[]> {
+    return this.http.get<Playlist[]>(
+      `${this.API}/getPlaylistsWhereSoundNotExists/${soundId}`
+    );
+  }
 }

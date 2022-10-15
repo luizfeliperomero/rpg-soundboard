@@ -10,6 +10,12 @@
       style="color: #ddd"
       [icon]="faPenToSquare"
     ></fa-icon>
+    <fa-icon
+      style="color: #fff"
+      [icon]="faShare"
+      (click)="setAddSoundToPlaylist()"
+      >Add</fa-icon
+    >
   </div>
   <button
     [ngClass]="{
@@ -42,3 +48,13 @@
   *ngIf="editSound"
 ></app-edit-sound-modal>
 <div *ngIf="editSound" (click)="setEditSound()" class="overlay"></div>
+<app-add-sound-modal
+  *ngIf="addSoundToPlaylist"
+  [sound]="sound"
+  (sendConfirmed)="setAddSoundToPlaylist()"
+></app-add-sound-modal>
+<div
+  class="overlay"
+  *ngIf="addSoundToPlaylist"
+  (click)="setAddSoundToPlaylist()"
+></div>

@@ -1,0 +1,12 @@
+<div class="addSoundModal">
+  <h4>Add sound</h4>
+  <div class="field">
+    <label>Playlist</label>
+    <select (change)="select($event)">
+      <option *ngFor="let playlist of playlists" value="{{ playlist.id }}">
+        {{ playlist.name }}
+      </option>
+    </select>
+  </div>
+  <button class="btnSuccess" (click)="confirm()">Confirm</button>
+</div>

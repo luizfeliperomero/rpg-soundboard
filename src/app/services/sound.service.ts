@@ -18,6 +18,12 @@ export class SoundService {
     return this.http.post<Sound>(`${this.API}/save`, sound, { params: params });
   }
 
+  savePlaylistSound(playlistId: number, soundId: number): Observable<any> {
+    return this.http.get(
+      `${this.API}/savePlaylistSound/${playlistId}/${soundId}`
+    );
+  }
+
   delete(sound: Sound): Observable<any> {
     return this.http.post(`${this.API}/delete`, sound);
   }

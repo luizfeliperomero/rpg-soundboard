@@ -17,6 +17,7 @@ import {
   faToggleOn,
   faToggleOff,
 } from '@fortawesome/free-solid-svg-icons';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sound-sender',
@@ -29,6 +30,7 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   @Output() deleted: EventEmitter<boolean> = new EventEmitter();
   @Output() sendEditedConfirmation: EventEmitter<boolean> = new EventEmitter();
   audio: HTMLAudioElement;
+  faShare = faShare;
   subscriptions: Subscription[];
   sendedSound: SendedSound;
   faPenToSquare = faPenToSquare;
@@ -38,6 +40,7 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   staged: boolean = false;
   autoPlay: boolean = false;
   editSound: boolean = false;
+  addSoundToPlaylist: boolean = false;
 
   constructor(
     private soundService: SoundService,
@@ -78,6 +81,10 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
         }
       })
     );
+  }
+
+  setAddSoundToPlaylist(): void {
+    this.addSoundToPlaylist = !this.addSoundToPlaylist;
   }
 
   delete(): void {
