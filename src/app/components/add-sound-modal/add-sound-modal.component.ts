@@ -72,6 +72,7 @@ export class AddSoundModalComponent implements OnInit, OnDestroy {
         .savePlaylistSound(this.playlistSelectedId, this.sound.id)
         .subscribe(() => {
           this.sendConfirmed.emit(true);
+          console.log('ADD');
         })
     );
   }

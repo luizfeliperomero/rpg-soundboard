@@ -94,7 +94,12 @@ export class PlaylistComponent implements OnInit, OnDestroy {
             this.uploadingMessage = "Uploading, Please don't refresh the page";
           },
           (err) => {
-            this.uploadingMessage = 'Sorry, something went wrong';
+            console.log(err);
+            if (err.status != 0) {
+              this.uploadingMessage = 'Sorry, something went wrong';
+            } else {
+              this.uploadingMessage = 'This file exceeds maximum size of 20MB';
+            }
             setTimeout(() => {
               this.setUploading();
             }, 5000);
@@ -159,5 +164,9 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   playlistEdited(event) {
     this.getPlaylistSounds();
     this.setShowEdit();
+  }
+
+  soundShared(event) {
+    this.getPlaylistSounds();
   }
 }

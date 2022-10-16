@@ -29,6 +29,7 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   @Output() emitter: EventEmitter<SendedSound> = new EventEmitter();
   @Output() deleted: EventEmitter<boolean> = new EventEmitter();
   @Output() sendEditedConfirmation: EventEmitter<boolean> = new EventEmitter();
+  @Output() soundShared: EventEmitter<boolean> = new EventEmitter();
   audio: HTMLAudioElement;
   faShare = faShare;
   subscriptions: Subscription[];
@@ -120,5 +121,11 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   soundEdited(event): void {
     this.sendEditedConfirmation.emit(event);
     this.setEditSound();
+  }
+
+  sendSharedSound(event): void {
+    this.addSoundToPlaylist = false;
+    console.log('SENDER');
+    this.soundShared.emit(event);
   }
 }

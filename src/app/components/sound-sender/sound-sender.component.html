@@ -51,7 +51,7 @@
 <app-add-sound-modal
   *ngIf="addSoundToPlaylist"
   [sound]="sound"
-  (sendConfirmed)="setAddSoundToPlaylist()"
+  (sendConfirmed)="sendSharedSound($event)"
 ></app-add-sound-modal>
 <div
   class="overlay"

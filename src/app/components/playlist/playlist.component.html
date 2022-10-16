@@ -53,6 +53,7 @@
     </div>
     <div class="sounds">
       <app-sound-sender
+        (soundShared)="getPlaylistSounds()"
         (edited)="soundEdited($event)"
         (deleted)="soundDeleted($event)"
         (emitter)="soundStarted($event)"
