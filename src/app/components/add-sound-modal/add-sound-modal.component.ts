@@ -43,20 +43,21 @@ export class AddSoundModalComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.playlistService.getUserPlaylists(this.user.id).subscribe((data) => {
         this.playlists = data;
+        const firstValue = this.playlists.find((p) => {
+          return p.id;
+        });
+        this.playlistSelectedId = Number(firstValue.id);
       })
     );
   }
 
   getPlaylists(): void {
+    console.log('getPlaylists');
     this.subscriptions.push(
       this.playlistService
         .getPlaylistsWhereSoundNotExists(this.sound.id)
         .subscribe((data) => {
           this.playlists = data;
-          const firstValue = this.playlists.find((p) => {
-            return p.id;
-          });
-          this.playlistSelectedId = Number(firstValue.id);
         })
     );
   }
