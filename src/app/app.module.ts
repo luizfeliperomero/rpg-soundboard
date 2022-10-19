@@ -26,6 +26,7 @@ import {
   PlaylistService,
   SoundService,
   PlayerService,
+  TokenInterceptorProvider,
 } from './services';
 
 @NgModule({
@@ -52,7 +53,13 @@ import {
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UserService, PlaylistService, SoundService, PlayerService],
+  providers: [
+    UserService,
+    PlaylistService,
+    SoundService,
+    PlayerService,
+    TokenInterceptorProvider,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

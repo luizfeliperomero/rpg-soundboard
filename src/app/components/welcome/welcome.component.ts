@@ -19,11 +19,11 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.audio.src =
+    /*this.audio.src =
       'http://192.168.1.101:8080/api/v1/sound/getAudio/-64001108d58420f1d50b3b187f3e0e053b10606e';
     this.audio.load();
     this.audio.play();
-    this.audio.loop = true;
+    this.audio.loop = true;*/
   }
 
   setShowSignIn(): void {

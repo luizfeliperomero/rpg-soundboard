@@ -26,6 +26,7 @@ import { faShare } from '@fortawesome/free-solid-svg-icons';
 })
 export class SoundSenderComponent implements OnInit, OnDestroy {
   @Input() sound: Sound;
+  @Input() playlistId: string;
   @Output() emitter: EventEmitter<SendedSound> = new EventEmitter();
   @Output() deleted: EventEmitter<boolean> = new EventEmitter();
   @Output() sendEditedConfirmation: EventEmitter<boolean> = new EventEmitter();
@@ -90,7 +91,7 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
 
   delete(): void {
     this.subscriptions.push(
-      this.soundService.delete(this.sound).subscribe(
+      this.soundService.delete(this.sound, Number(this.playlistId)).subscribe(
         () => {},
         () => {},
         () => {
@@ -125,7 +126,6 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
 
   sendSharedSound(event): void {
     this.addSoundToPlaylist = false;
-    console.log('SENDER');
     this.soundShared.emit(event);
   }
 }

@@ -52,6 +52,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.playlist);
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getTheme();
     this.getPlaylistSounds();
@@ -95,7 +96,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
           },
           (err) => {
             console.log(err);
-            if (err.status != 0) {
+            if (err.status != 413) {
               this.uploadingMessage = 'Sorry, something went wrong';
             } else {
               this.uploadingMessage = 'This file exceeds maximum size of 20MB';

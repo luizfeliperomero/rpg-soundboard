@@ -24,8 +24,8 @@ export class SoundService {
     );
   }
 
-  delete(sound: Sound): Observable<any> {
-    return this.http.post(`${this.API}/delete`, sound);
+  delete(sound: Sound, playlistId: number): Observable<any> {
+    return this.http.post(`${this.API}/delete/${playlistId}`, sound);
   }
 
   edit(sound: Sound): Observable<any> {
@@ -43,8 +43,8 @@ export class SoundService {
     });
   }
 
-  getAudioBytes(audioName: string): Observable<any> {
-    return this.http.get<any>(`${this.API}/getAudio/${audioName}`);
+  getAudioBytes(audioCode: string): Observable<any> {
+    return this.http.get<any>(`${this.API}/getAudio/${audioCode}`);
   }
 
   getPlaylistSounds(playlist_id: number): Observable<Sound[]> {

@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
   authenticate(): void {
     this.userService.authenticate(this.form.value).subscribe(
       (data) => {
+        console.log(data.user);
         this.sendSuccess.emit(true);
-        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('jwt', data.jwt);
       },
       (err) => {
         if (err.status === 401 || err.status === 404) {
