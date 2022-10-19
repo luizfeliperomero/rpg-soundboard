@@ -52,7 +52,6 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.playlist);
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getTheme();
     this.getPlaylistSounds();
@@ -95,7 +94,6 @@ export class PlaylistComponent implements OnInit, OnDestroy {
             this.uploadingMessage = "Uploading, Please don't refresh the page";
           },
           (err) => {
-            console.log(err);
             if (err.status != 413) {
               this.uploadingMessage = 'Sorry, something went wrong';
             } else {
@@ -117,15 +115,19 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   }
 
   delete(): void {
-    this.subscriptions.push(
-      this.playlistService.delete(this.playlist).subscribe(
-        () => {},
-        () => {},
-        () => {
-          this.deleted.emit(true);
-        }
-      )
-    );
+    if (
+      window.confirm(`Playlist ${this.playlist.name} is going to be deleted`)
+    ) {
+      this.subscriptions.push(
+        this.playlistService.delete(this.playlist).subscribe(
+          () => {},
+          () => {},
+          () => {
+            this.deleted.emit(true);
+          }
+        )
+      );
+    }
   }
 
   sendToStageArea(): void {

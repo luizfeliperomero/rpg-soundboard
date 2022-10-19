@@ -90,15 +90,17 @@ export class SoundSenderComponent implements OnInit, OnDestroy {
   }
 
   delete(): void {
-    this.subscriptions.push(
-      this.soundService.delete(this.sound, Number(this.playlistId)).subscribe(
-        () => {},
-        () => {},
-        () => {
-          this.deleted.emit(true);
-        }
-      )
-    );
+    if (window.confirm(`Sound ${this.sound.name} is going to be deleted`)) {
+      this.subscriptions.push(
+        this.soundService.delete(this.sound, Number(this.playlistId)).subscribe(
+          () => {},
+          () => {},
+          () => {
+            this.deleted.emit(true);
+          }
+        )
+      );
+    }
   }
 
   setEditSound(): void {
