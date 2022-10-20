@@ -2,11 +2,11 @@
   <div *ngIf="success" class="alert-success">
     Sign Up successfully completed! redirecting to Sign In...
   </div>
-  <div *ngIf="unauthorized" class="alert-error">Name already taken</div>
+  <div *ngIf="unauthorized" class="alert-error">Username already taken</div>
   <h3>Sign Up</h3>
   <form [formGroup]="form">
     <div class="field">
-      <label>Name</label>
+      <label>Username</label>
       <input type="text" formControlName="username" />
     </div>
     <div class="field">

@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   logout(): void {
-    localStorage.removeItem('jwt');
+    localStorage.clear();
     this.router.navigate(['']);
   }
 }
