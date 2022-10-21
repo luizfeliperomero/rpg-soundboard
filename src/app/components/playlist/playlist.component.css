@@ -154,7 +154,10 @@ fa-icon {
   .playlist {
     width: 335px;
   }
-  .inside-default {
+  .inside-default,
+  .inside-medieval,
+  .inside-medieval-fantasy,
+  .inside-space {
     width: 100%;
     min-height: 0;
   }
