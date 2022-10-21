@@ -149,3 +149,13 @@ fa-icon {
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 860px) {
+  .playlist {
+    width: 335px;
+  }
+  .inside-default {
+    width: 100%;
+    min-height: 0;
+  }
+}

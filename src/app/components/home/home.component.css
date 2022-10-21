@@ -113,3 +113,12 @@ app-staging-area {
   justify-content: center;
   width: 100%;
 }
+
+@media (max-width: 860px) {
+  .playlists {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+}
