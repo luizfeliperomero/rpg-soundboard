@@ -121,4 +121,7 @@ app-staging-area {
     gap: 30px;
     align-items: center;
   }
+  span {
+    font-size: 12px;
+  }
 }
