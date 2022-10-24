@@ -11,6 +11,8 @@ import { PlaylistService } from 'src/app/services';
 export class AddPlaylistModalComponent implements OnInit {
   form: FormGroup;
   user: User;
+  maxPlaylistsErr: boolean = false;
+  maxPlaylistsErrMessage: string = '';
   playlist: Playlist;
   @Output() sendConfirmation: EventEmitter<boolean> =
     new EventEmitter<boolean>();
@@ -29,8 +31,16 @@ export class AddPlaylistModalComponent implements OnInit {
 
   submit(): void {
     this.playlist = this.form.value;
-    this.playlistService.save(this.playlist, this.user.id).subscribe((data) => {
-      this.sendConfirmation.emit(true);
-    });
+    this.playlistService.save(this.playlist, this.user.id).subscribe(
+      (data) => {
+        this.sendConfirmation.emit(true);
+      },
+      (err) => {
+        if (err.status === 401) {
+          this.maxPlaylistsErrMessage = err.error.message;
+          this.maxPlaylistsErr = true;
+        }
+      }
+    );
   }
 }

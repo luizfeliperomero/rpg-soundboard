@@ -15,4 +15,5 @@ a {
 img {
   height: 70%;
   margin-left: 20px;
+  cursor: pointer;
 }

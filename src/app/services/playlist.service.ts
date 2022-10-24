@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Playlist, Sound } from '../models';
+import { Playlist, Sound, User } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +15,8 @@ export class PlaylistService {
 
   constructor(private http: HttpClient) {}
 
-  save(playlist: Playlist, user_id: number): Observable<Playlist> {
-    let params = new HttpParams().set('user_id', user_id);
+  save(playlist: Playlist, userId: number): Observable<Playlist> {
+    let params = new HttpParams().set('user_id', userId);
     return this.http.post<Playlist>(`${this.API}/save`, playlist, {
       params: params,
     });

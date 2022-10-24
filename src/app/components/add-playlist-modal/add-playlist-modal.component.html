@@ -1,5 +1,8 @@
 <div class="playlistModal">
   <h2>New Playlist</h2>
+  <div *ngIf="maxPlaylistsErr" class="alert-error">
+    {{ maxPlaylistsErrMessage }}
+  </div>
   <form [formGroup]="form">
     <div class="field">
       <label>Name</label>
