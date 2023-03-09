@@ -25,11 +25,14 @@ export class SoundService {
   }
 
   delete(sound: Sound, playlistId: number): Observable<any> {
-    return this.http.post(`${this.API}/delete/${playlistId}`, sound);
+    const options = {
+      body: sound,
+    };
+    return this.http.delete(`${this.API}/delete/${playlistId}`, options);
   }
 
   edit(sound: Sound): Observable<any> {
-    return this.http.post(`${this.API}/update`, sound);
+    return this.http.put(`${this.API}/update`, sound);
   }
 
   uploadFile(file, playlist_id: string, user_id: string): Observable<Sound> {

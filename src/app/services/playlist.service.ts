@@ -23,11 +23,14 @@ export class PlaylistService {
   }
 
   edit(playlist: Playlist): Observable<any> {
-    return this.http.post(`${this.API}/update`, playlist);
+    return this.http.put(`${this.API}/update`, playlist);
   }
 
   delete(playlist: Playlist): Observable<any> {
-    return this.http.post(`${this.API}/delete`, playlist);
+    const options = {
+      body: playlist,
+    };
+    return this.http.delete(`${this.API}/delete`, options);
   }
 
   getUserPlaylists(user_id: number): Observable<Playlist[]> {
