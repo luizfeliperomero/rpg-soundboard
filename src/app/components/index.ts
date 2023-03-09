@@ -11,3 +11,4 @@ export * from './edit-sound-modal';
 export * from './edit-playlist-modal';
 export * from './navbar';
 export * from './add-sound-modal';
+export * from './plans';

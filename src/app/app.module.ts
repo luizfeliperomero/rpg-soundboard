@@ -20,6 +20,7 @@ import {
   EditPlaylistModalComponent,
   NavbarComponent,
   AddSoundModalComponent,
+  PlansComponent,
 } from './components/';
 import {
   UserService,
@@ -45,6 +46,7 @@ import {
     EditPlaylistModalComponent,
     NavbarComponent,
     AddSoundModalComponent,
+    PlansComponent,
   ],
   imports: [
     BrowserModule,
