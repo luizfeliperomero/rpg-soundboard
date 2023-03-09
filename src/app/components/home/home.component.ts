@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Playlist, SendedSound } from 'src/app/models';
 import { Theme } from 'src/app/models/Theme';
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private playlistService: PlaylistService,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,9 +46,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.playlistService
         .getUserPlaylists(JSON.parse(localStorage.getItem('user')).id)
-        .subscribe((data) => {
-          this.playlists = data;
-        })
+        .subscribe(
+          (data) => {
+            this.playlists = data;
+          },
+          (err) => {
+            if (err.status === 403) {
+              localStorage.clear();
+              this.router.navigate(['']);
+            }
+          }
+        )
     );
   }
 
