@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'http://192.168.1.101:8080',
+  API: 'soundboard-backend-svc',
 };
 
 /*
