@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'soundboard-backend-svc',
+  API: 'soundboard-backend-service',
 };
 
 /*
