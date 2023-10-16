@@ -1,9 +1,11 @@
-FROM node:latest
+FROM node:latest as angular
 WORKDIR /app
 COPY package.json /app
 RUN npm install --legacy-peer-deps
-RUN npm install -g @angular/cli --legacy-peer-deps
 COPY . .
-EXPOSE 4200
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+RUN npm run build
 
+FROM nginx:alpine
+VOLUME /var/cache/nginx
+COPY --from=angular app/dist/rpg-soundboard /usr/share/nginx/html
+COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
